@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .container
+        article.post-container(class=$postClass(post))
+            header.post-header
+                h1.post-title= post.title
+                p.blog-description= app.description
+            .post-content
+                != post.content
+
+                if post.labels
+                    p.post-tags
+                        span Tagged:
+                        = $labels(post)

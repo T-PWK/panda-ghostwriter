@@ -7,7 +7,7 @@ block content
                 article.post-container(class="{{post_class}}")
                     header.post-header
                         h1.post-title= post.title
-                        p.post-date: time(datetime= post.published) Published September 19th 2013
+                        p.post-date: time(datetime= post.published) Published #{$date(post, 'MMMM Do YYYY')}
                     .post-content
                         = post.content
                         if post.labels
@@ -21,10 +21,15 @@ block content
                 li.post-stub(class="{{post_class}}")
                     a.js-ajax-link(title= post.title, href= $url(post))
                         h4.post-stub-title= post.title
-                        time.post-stub-date(datetime= post.published) Published September 19th 2013
+                        time.post-stub-date(datetime= post.published) Published #{$date(post, 'MMMM Do YYYY')}
 
-                        span.post-stub-tag Featured
+                        if post.featured
+                            span.post-stub-tag Featured
 
         .post-navigation
-            | pagination
-            
+            nav.pagination(role="navigation")
+                if pagination.newer
+                    a.newer-posts(href= $pageUrl(post, true)) &larr; Newer Posts
+                span.page-number Page #{pagination.page} of #{pagination.pages}
+                if pagination.older
+                    a.older-posts(href= $pageUrl(post, false)) Older Posts &rarr;

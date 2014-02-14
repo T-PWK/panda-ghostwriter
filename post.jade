@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .container
+        article.post-container(class=$postClass(post))
+            header.post-header
+                h1.post-title= post.title
+                p.post-date: time(datetime= post.scheduled) Published #{$date(post, "MMMM Do YYYY")}
+            .post-content
+                != post.content
+
+                if post.labels
+                    p.post-tags
+                        span Tagged:
+                        = $labels(post)
