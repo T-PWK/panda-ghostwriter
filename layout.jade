@@ -5,8 +5,8 @@ html
         meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
 
         //- Page Meta
-        title Ghostwriter for Panda {{meta_title}}
-        meta(name="description", content="{{meta_description}}")
+        title= metaTitle
+        meta(name="description", content=metaDescription)
 
         meta(name="HandheldFriendly", content="True")
         meta(name="MobileOptimized", content="320")
@@ -21,16 +21,16 @@ html
 
         //- {{ghost_head}}
 
-    body(class= $bodyClass())
+    body(class=bodyClass)
         #wrapper
             header.site-header
                 .container
                     .site-title-wrapper
-                        h1.site-title: a.js-ajax-link(title= app.title, href= app.url)= app.title
+                        h1.site-title: a.js-ajax-link(title= title, href= url)= title
                         a.button-square(href= $url('/rss', true)): i.fa.fa-rss
                     ul.site-nav
-                        li.site-nav-item: a.js-ajax-link(href= app.url) Latest Post
-                        li.site-nav-item: a.js-ajax-link.js-show-index(href= app.url) Browse Posts
+                        li.site-nav-item: a.js-ajax-link(href= url) Latest Post
+                        li.site-nav-item: a.js-ajax-link.js-show-index(href= url) Browse Posts
                         li.site-nav-item: a.js-ajax-link(href="/about") About
             #ajax-container
                 block content
@@ -38,7 +38,7 @@ html
         footer.footer
             .container
                 .site-title-wrapper
-                    h1.site-title: a.js-ajax-link(title= app.title, href= app.url)= app.title
+                    h1.site-title: a.js-ajax-link(title= title, href= url)= title
                     a.button-square.button-jump-top.js-jump-top(href="#"): i.fa.fa-angle-up
                 p.footer-copyright
                     | &copy; 2014 / Published with 
@@ -48,7 +48,12 @@ html
                     |  By  
                     a(href="http://jollygoodthemes.com") JollyGoodThemes
 
+        #fit-vids-style.fit-vids-style(style="display: none;")
+            style.
+                .fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></div>
+
         //- {{ghost_foot}}
+        script(type="text/javascript", src="//code.jquery.com/jquery-2.1.0.min.js")
         script(type="text/javascript", src="/assets/js/jquery.history.js")
         script(type="text/javascript", src="/assets/js/nprogress.js")
         script(type="text/javascript", src="/assets/js/jquery.fitvids.js")

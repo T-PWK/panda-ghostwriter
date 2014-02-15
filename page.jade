@@ -5,7 +5,7 @@ block content
         article.post-container(class=$postClass(post))
             header.post-header
                 h1.post-title= post.title
-                p.blog-description= app.description
+                p.blog-description= description
             .post-content
                 != post.content
 

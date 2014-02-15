@@ -2,23 +2,24 @@ extends layout
 
 block content
     #latest-post.container
-        each post, index in posts
-            if index === 0
-                article.post-container(class="{{post_class}}")
-                    header.post-header
-                        h1.post-title= post.title
-                        p.post-date: time(datetime= post.published) Published #{$date(post, 'MMMM Do YYYY')}
-                    .post-content
-                        = post.content
-                        if post.labels
-                            p.post-tags
-                                span Tagged:
-                                =  post.labels 
+
+        if posts && posts.length
+            - var post = posts[0]
+            article.post-container(class=$postClass(post))
+                header.post-header
+                    h1.post-title= post.title
+                    p.post-date: time(datetime= post.scheduled) Published #{post.published} #{$date(post, 'MMMM Do YYYY')}
+                .post-content
+                    != post.content
+                    if post.labels
+                        p.post-tags
+                            span Tagged:
+                            =  post.labels 
 
     #post-index.container
         ol.post-list
             each post in posts
-                li.post-stub(class="{{post_class}}")
+                li.post-stub(class=$postClass(post))
                     a.js-ajax-link(title= post.title, href= $url(post))
                         h4.post-stub-title= post.title
                         time.post-stub-date(datetime= post.published) Published #{$date(post, 'MMMM Do YYYY')}
@@ -29,7 +30,7 @@ block content
         .post-navigation
             nav.pagination(role="navigation")
                 if pagination.newer
-                    a.newer-posts(href= $pageUrl(post, true)) &larr; Newer Posts
+                    a.newer-posts(href= $pageUrl(true)) &larr; Newer Posts
                 span.page-number Page #{pagination.page} of #{pagination.pages}
                 if pagination.older
-                    a.older-posts(href= $pageUrl(post, false)) Older Posts &rarr;
+                    a.older-posts(href= $pageUrl(false)) Older Posts &rarr;
