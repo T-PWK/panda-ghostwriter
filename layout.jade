@@ -27,9 +27,9 @@ html
                 .container
                     .site-title-wrapper
                         h1.site-title: a.js-ajax-link(title= title, href= url)= title
-                        a.button-square(href= $url('/rss', true)): i.fa.fa-rss
+                        a.button-square(href="#{url}/rss"): i.fa.fa-rss
                     ul.site-nav
-                        li.site-nav-item: a.js-ajax-link(href= url) Latest Post
+                        li.site-nav-item: a.js-ajax-link(href=url) Latest Post
                         li.site-nav-item: a.js-ajax-link.js-show-index(href= url) Browse Posts
                         li.site-nav-item: a.js-ajax-link(href="/about") About
             #ajax-container
@@ -41,8 +41,8 @@ html
                     h1.site-title: a.js-ajax-link(title= title, href= url)= title
                     a.button-square.button-jump-top.js-jump-top(href="#"): i.fa.fa-angle-up
                 p.footer-copyright
-                    | &copy; 2014 / Published with 
-                    a(href="http://tryghost.org") Ghost
+                    | &copy; #{now.year()} / Published with 
+                    a(href="https://github.com/T-PWK/panda") Panda
                     |  / 
                     a(href="https://github.com/roryg/ghostwriter") Ghostwriter theme
                     |  By  
