@@ -3,9 +3,11 @@ extends layout
 block content
     .container
         article.post-container(class=$postClass(post))
+
             header.post-header
                 h1.post-title= post.title
-                p.post-date: time(datetime= post.scheduled) Published #{$date(post, "MMMM Do YYYY")}
+                p.post-date: time(datetime= $date(post, 'iso')) Published #{$date(post, "MMMM Do YYYY")}
+
             .post-content
                 != post.content
 

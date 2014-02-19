@@ -3,9 +3,11 @@ extends layout
 block content
     .container
         article.post-container(class=$postClass(post))
+
             header.post-header
                 h1.post-title= post.title
                 p.blog-description= description
+
             .post-content
                 != post.content
 
